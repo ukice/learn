@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数独</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">▦</span>
+        <h1>数独</h1>
+      </div>
+      <p class="tagline">填入 1–9，每行、每列、每个 3×3 宫不重复</p>
+    </header>
+
+    <div class="body-grid">
+      <main class="board-wrap">
+        <div class="board" id="board" role="grid" aria-label="数独棋盘 9x9"></div>
+      </main>
+
+      <div class="side-column">
+        <section class="toolbar">
+          <div class="difficulty" role="group" aria-label="难度">
+            <button type="button" class="pill active" data-diff="easy">简单</button>
+            <button type="button" class="pill" data-diff="medium">中等</button>
+            <button type="button" class="pill" data-diff="hard">困难</button>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn primary" id="btnNew">新局</button>
+            <button type="button" class="btn" id="btnReset">清空填写</button>
+            <button type="button" class="btn" id="btnHint" title="填入一个正确数字">提示</button>
+          </div>
+        </section>
+
+        <section class="status-bar">
+          <div class="stat">
+            <span class="stat-label">用时</span>
+            <span class="stat-value" id="timer">00:00</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">剩余空格</span>
+            <span class="stat-value" id="remaining">0</span>
+          </div>
+          <div class="message" id="message" aria-live="polite"></div>
+        </section>
+
+        <section class="numpad" aria-label="数字键盘">
+          <button type="button" class="num" data-value="1">1</button>
+          <button type="button" class="num" data-value="2">2</button>
+          <button type="button" class="num" data-value="3">3</button>
+          <button type="button" class="num" data-value="4">4</button>
+          <button type="button" class="num" data-value="5">5</button>
+          <button type="button" class="num" data-value="6">6</button>
+          <button type="button" class="num" data-value="7">7</button>
+          <button type="button" class="num" data-value="8">8</button>
+          <button type="button" class="num" data-value="9">9</button>
+          <button type="button" class="num wide" data-value="0" id="btnErase">擦除</button>
+        </section>
+
+        <footer class="footer">
+          <span>方向键移动 · 数字键填写 · Backspace 擦除</span>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="winModal" role="dialog" aria-modal="true" aria-labelledby="winTitle">
+    <div class="modal-card">
+      <h2 id="winTitle">完成！</h2>
+      <p class="modal-time">用时 <strong id="winTime">00:00</strong></p>
+      <button type="button" class="btn primary" id="btnNext">再来一局</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
